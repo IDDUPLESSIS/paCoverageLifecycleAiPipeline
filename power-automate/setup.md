@@ -1,7 +1,7 @@
 # Power Automate — Setup
 
 1) **Import**
-- In Power Automate, import a solution/package (create a new Solution if preferred).
+- In Power Automate, import a solution/package (create a new Solution if preferred for AiSummary_20251023135659.zip).
 - Re-create the following connections in your environment:
   - **SQL Server** (to your DB)
   - **Office 365 Outlook** (for Send email (V2))
