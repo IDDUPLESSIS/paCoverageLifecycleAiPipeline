@@ -1,7 +1,7 @@
 USE [IBA]
 GO
 
-/****** Object:  View [aicm].[v_AssetCompany]    Script Date: 10/23/2025 10:57:04 AM ******/
+/****** Object:  View [aicm].[v_AssetCompany]    Script Date: 10/23/2025 11:07:14 AM ******/
 SET ANSI_NULLS ON
 GO
 
