@@ -1,0 +1,30 @@
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+
+# VS / .NET
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.nupkg
+*.snk
+
+# Node / general
+node_modules/
+dist/
+.env
+*.log
+
+# SQL dumps/backups
+*.bak
+*.mdf
+*.ldf
+
+# Power Automate exports (keep only in /power-automate)
+!power-automate/
