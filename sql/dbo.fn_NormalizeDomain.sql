@@ -1,16 +1,31 @@
--- dbo.fn_NormalizeDomain (toy version)
-IF OBJECT_ID('dbo.fn_NormalizeDomain','FN') IS NOT NULL DROP FUNCTION dbo.fn_NormalizeDomain;
+USE [IBA]
 GO
-CREATE FUNCTION dbo.fn_NormalizeDomain (@domain NVARCHAR(255))
+
+/****** Object:  UserDefinedFunction [dbo].[fn_NormalizeDomain]    Script Date: 10/23/2025 11:12:58 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+/* =========================
+   1) Helper: URL → bare domain
+   ========================= */
+CREATE   FUNCTION [dbo].[fn_NormalizeDomain] (@url NVARCHAR(512))
 RETURNS NVARCHAR(255)
 AS
 BEGIN
-    IF @domain IS NULL RETURN NULL;
-    DECLARE @d NVARCHAR(255) = LOWER(LTRIM(RTRIM(@domain)));
-    -- strip protocol and www
-    IF LEFT(@d,8)='https://' SET @d = SUBSTRING(@d,9,255);
-    IF LEFT(@d,7)='http://'  SET @d = SUBSTRING(@d,8,255);
-    IF LEFT(@d,4)='www.'     SET @d = SUBSTRING(@d,5,255);
-    RETURN @d;
+    DECLARE @u NVARCHAR(512) = LOWER(LTRIM(RTRIM(@url)));
+    IF @u IS NULL OR @u = '' RETURN NULL;
+
+    IF LEFT(@u,8) = 'https://' SET @u = SUBSTRING(@u,9,4000);
+    ELSE IF LEFT(@u,7) = 'http://' SET @u = SUBSTRING(@u,8,4000);
+
+    IF CHARINDEX('/', @u) > 0 SET @u = LEFT(@u, CHARINDEX('/', @u)-1);
+    IF LEFT(@u,4) = 'www.' SET @u = SUBSTRING(@u,5,4000);
+    RETURN @u;
 END
 GO
+
+
