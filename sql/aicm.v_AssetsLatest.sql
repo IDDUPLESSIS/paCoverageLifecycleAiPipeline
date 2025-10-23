@@ -1,8 +1,22 @@
--- aicm.v_AssetsLatest (demo placeholder)
-IF OBJECT_ID('aicm.v_AssetsLatest','V') IS NOT NULL DROP VIEW aicm.v_AssetsLatest;
+USE [IBA]
 GO
-CREATE VIEW aicm.v_AssetsLatest AS
+
+/****** Object:  View [aicm].[v_AssetsLatest]    Script Date: 10/23/2025 11:08:21 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+-- A. Latest-only slice of your base view
+CREATE   VIEW [aicm].[v_AssetsLatest]
+AS
 SELECT *
-FROM aicm.RAI_SP0 -- assume created by samples/setup.sql
-WHERE IsLatest = 1;
+FROM [aicm].[v_AssetCompany]
+WHERE is_latest = 1;
 GO
+
+
